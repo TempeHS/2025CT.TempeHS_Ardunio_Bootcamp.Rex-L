@@ -36,11 +36,20 @@ bool writeValue;
 void setup() {
   pinMode(ledPin, OUTPUT);
   pinMode(buttonPin, INPUT);
-  ledPin = HIGH;
+  Serial.begin(9600);
+  Serial.println("Debugged");
 }
 
 void loop() {
   readPin = digitalRead(buttonPin);
-  writeValue = readPin;
-  digitalWrite(ledPin, writeValue);
+  digitalWrite(ledPin, !readPin);
+  Serial.print(digitalRead(readPin));
+  Serial.println(digitalRead(!readPin));
+  Serial.print("LEDstate:");
+  Serial.print(digitalRead(readPin));
+  Serial.print(",");
+  Serial.print("ButtonState:");
+  Serial.println(digitalRead(!readPin));
+  
+
 }
