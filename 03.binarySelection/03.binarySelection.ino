@@ -1,4 +1,4 @@
-/*  Author: 
+/*  Author: Rex L - 28/08/24
 
   Learning Intention:
   The students understand binary selection logic and apply it to a simple control structures.
@@ -32,10 +32,54 @@
 
 */
 
+static unsigned int ledPin = 6;
+static unsigned int buttonPin = 5;
+static unsigned int lineSensorPin = 7;
+bool readPin;
+bool writeValue;
+
 void setup() {
-  
+  pinMode(ledPin, OUTPUT);
+  pinMode(buttonPin, INPUT);
+  pinMode(lineSensorPin, INPUT);
+  Serial.begin(9600);
+  Serial.println("Debugged");
 }
 
 void loop() {
+  Serial.println(analogRead(A3));
+  if (analogRead(A3) == 0)
+  {
+    digitalWrite(ledPin, HIGH);
+  } else if (analogRead(A3) >= 3)
+    digitalWrite(ledPin, LOW);
+    else if (analogRead(A3) >= 5)
+  {
+    digitalWrite(ledPin, LOW);
+  }
   
+
+
+  /*
+  if (digitalRead(buttonPin) ==  LOW) 
+  {
+    digitalWrite(ledPin, HIGH);
+    delay(1000);
+  } else
+  {
+    digitalWrite(ledPin, LOW);
+  }
+  */
+  
+  //readPin = digitalRead(buttonPin);
+  //digitalWrite(ledPin, !readPin);
+  //Serial.print(digitalRead(readPin));
+  //Serial.println(digitalRead(!readPin));
+  //Serial.print("LEDstate:");
+  //Serial.print(digitalRead(readPin));
+  //Serial.print(",");
+  //Serial.print("ButtonState:");
+  //Serial.println(digitalRead(!readPin));
+  
+
 }
