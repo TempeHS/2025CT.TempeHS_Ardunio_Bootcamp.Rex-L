@@ -10,7 +10,6 @@
     3.  I can map a potentiometer to a servo and control its movement
     4.  I understand that a 180deg servo angle of movement is set by a
         frequency signal sent from the microcontroller
-
   Student Notes: 
 
   Documentation:
@@ -26,13 +25,13 @@
 
 Servo myservo;
 unsigned static int servoPin = 7;
-unsigned static int potpin = A2;
+unsigned static int potpin = A2;    
 
 void setup() {
   myservo.attach(servoPin);
 }
 
-void loop() {
+void loop() {                                    
   int val = analogRead(potpin);
   val = map(val, 0, 1023, 0, 180);
   myservo.write(val);

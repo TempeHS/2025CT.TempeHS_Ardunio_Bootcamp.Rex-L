@@ -25,11 +25,25 @@
 
 #include "Ultrasonic.h"
 
-void setup()
-{
-  
+#include <Servo.h>
+
+Servo myservo;
+Ultrasonic distanceSensor(5);
+
+unsigned static int servoPin = 7;  
+
+void setup() {
+  myservo.attach(servoPin);
+  Serial.begin(9600);
 }
-void loop()
-{
-  
+
+void loop() {                  
+  Serial.println(distanceSensor.distanceRead());
+
+
+  int val = analogRead();
+  val = map(val, 0, 1023, 0, 90);
+  myservo.write(val);
 }
+
+
