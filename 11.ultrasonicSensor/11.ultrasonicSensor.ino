@@ -29,21 +29,40 @@
 
 Servo myservo;
 Ultrasonic distanceSensor(5);
-
 unsigned static int servoPin = 7;  
+
+  unsigned long servoPreviousMillis = 0;
+
+  const unsigned long servoLEDinterval = 1000;
 
 void setup() {
   myservo.attach(servoPin);
   Serial.begin(9600);
 }
 
-void loop() {                  
+void loop() {  
+  unsigned long currentMillis = millis();
+
+  /*if (distanceSensor.distanceRead() <= 10) 
+  {
+    int val = map(val, 0, 100, 0, 180);
+    myservo.write(val);
+    
+  } 
+
+  if (distanceSensor.distanceRead() >= 10)
+  {
+    int val = map(val, 100, 0, 180, 0);
+    myservo.write(val);
+  }
+  */
+
+  while (distanceSensor.distanceRead() >= 10);
+  {
+    int val = map(val, 0, 100, 0, 180);
+    myservo.write(val);
+  }
   Serial.println(distanceSensor.distanceRead());
-
-
-  int val = analogRead();
-  val = map(val, 0, 1023, 0, 90);
-  myservo.write(val);
 }
 
 
